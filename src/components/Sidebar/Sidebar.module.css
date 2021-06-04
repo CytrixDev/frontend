@@ -1,0 +1,44 @@
+.Sidebar{
+    height: 100vh;
+    max-width: 15%;
+    width: 256px;
+
+    padding-top: 35px;
+    box-shadow: 5px 0px 32px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    text-align: center;
+    margin-left: -40px;
+    color: #252A34;
+}
+
+.Links{
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+    padding: 0 17px;
+}
+
+.Links .Link{
+    padding: 0 24px;
+    margin-bottom: 15px;
+    color: #91929D;
+
+    font-size: 1.0625rem;
+}
+
+.Links .Link i {
+    margin-right: 10px;
+}
+
+.Links .Link:hover{
+    text-decoration: none;
+}
+
+.Links .selected{
+    background-color: #007bff;
+    color: white !important;
+    border-radius: 6px;
+    padding: 7px 24px;
+}

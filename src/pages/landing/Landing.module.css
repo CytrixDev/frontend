@@ -1,0 +1,65 @@
+@media only screen and (max-width: 760px) {
+    img {
+        visibility: hidden;
+    }
+}
+
+.landingTop {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.landingTopArea {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+.landingTopArea .landingTopImage {
+    align-self: center;
+    width: 500px;
+    height: 250px;
+}
+.landingTopContent {
+    width: 40%;
+    align-self: center;
+}
+.landingTopContent .contentTitle{
+    font-size: 4rem;
+}
+.landingTopContent .buttons button{
+    width: 100px;
+}
+/*.features {*/
+/*    text-align: center;*/
+/*}*/
+/*!*.features .cards .card {*!*/
+/*!*    width: 200px;*!*/
+/*!*}*!*/
+/*.features .cards .card i{*/
+/*    font-size: 4rem;*/
+/*    padding: 1rem;*/
+/*    border-radius: 30%;*/
+/*}*/
+/*.features .cards .card img{*/
+/*    width: 120px;*/
+/*    height: 100px;*/
+/*    border-radius: 30%;*/
+/*}*/
+/*.features .cards .card .icon1 {*/
+/*    background-color: #44ffbc;*/
+/*    color: #26a37c;*/
+/*}*/
+/*.features .cards .card .icon2 {*/
+/*    background-color: #ff8f44;*/
+/*    color: #99552b;*/
+/*}*/
+/*.features .cards .card .icon3 {*/
+/*    background-color: #a869ff;*/
+/*    color: #714aaf;*/
+/*}*/
+/*.features .cards .card .cardTitle{*/
+/*    font-size: 1.3rem;*/
+/*}*/
+/*.features .cards .card p{*/
+/*    padding: 0 20%;*/
+/*}*/

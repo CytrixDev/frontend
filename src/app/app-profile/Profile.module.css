@@ -1,0 +1,13 @@
+.pP {
+    clip-path: circle(55%);
+    border: 4px solid #74d2ff;
+    border-radius: 60%;
+    width: 210px;
+    height: 200px;
+}
+
+.card {
+    border: 1px solid #eee;
+    box-shadow: 0px 2px 4px 16px #ccc;
+    padding: 1rem;
+}
