@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import sim from './sample/sim3.json'
+import sim from './sample/out.js'
 import axios from 'axios'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
