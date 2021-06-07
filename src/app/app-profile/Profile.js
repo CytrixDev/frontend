@@ -137,65 +137,73 @@ export const Profile = () => {
 					{/*	</FormGroup>*/}
 					{/*</Col>*/}
 				</Row>
-				<Row className='d-flex justify-content-center align-items-center mt-3'>
-					<Col sm='6'>
-						<FormGroup className='d-flex flex-column'>
-							{editData ? (
-								<Button
-									onClick={() => {
-										setEditData(!editData)
-										console.log(editName)
-										console.log(editLastName)
-									}}
-									className='w-100'
-									color='success'
-								>
-									Save
-								</Button>
-							) : (
-								<Button
-									onClick={() => {
-										setEditData(!editData)
-										console.log(editData)
-									}}
-									className='w-100'
-									color='primary'
-								>
-									Edit
-								</Button>
-							)}
-						</FormGroup>
-					</Col>
-					<Col sm='6'>
-						<FormGroup className='d-flex flex-column'>
-							{editData ? (
-								<Button
-									onClick={() => {
-										setEditData(!editData)
-										console.log(editData)
-									}}
-									className='w-100'
-									color='danger'
-									outline
-								>
-									Cancel
-								</Button>
-							) : (
-								<Button
-									onClick={() => {
-										localStorage.clear()
-										history.push('/login')
-									}}
-									className='w-100'
-									color='danger'
-									outline
-								>
-									Delete
-								</Button>
-							)}
-						</FormGroup>
-					</Col>
-				</Row>
+				{userData ? (
+					<Row className='d-flex justify-content-center align-items-center mt-3'>
+						<Col sm='6'>
+							<FormGroup className='d-flex flex-column'>
+								{editData ? (
+									<Button
+										disabled={userData.firstName === 'guest'}
+										onClick={() => {
+											setEditData(!editData)
+											console.log(editName)
+											console.log(editLastName)
+										}}
+										className='w-100'
+										color='success'
+									>
+										Save
+									</Button>
+								) : (
+									<Button
+										disabled={userData.firstName === 'guest'}
+										onClick={() => {
+											setEditData(!editData)
+											console.log(editData)
+										}}
+										className='w-100'
+										color='primary'
+									>
+										Edit
+									</Button>
+								)}
+							</FormGroup>
+						</Col>
+						<Col sm='6'>
+							<FormGroup className='d-flex flex-column'>
+								{editData ? (
+									<Button
+										disabled={userData.firstName === 'guest'}
+										onClick={() => {
+											setEditData(!editData)
+											console.log(editData)
+										}}
+										className='w-100'
+										color='danger'
+										outline
+									>
+										Cancel
+									</Button>
+								) : (
+									<Button
+										disabled={userData.firstName === 'guest'}
+										onClick={() => {
+											localStorage.clear()
+											history.push('/login')
+										}}
+										className='w-100'
+										color='danger'
+										outline
+									>
+										Delete
+									</Button>
+								)}
+							</FormGroup>
+						</Col>
+					</Row>
+				) : (
+					<div>Loading...</div>
+				)}
 			</div>
 		</div>
 	)

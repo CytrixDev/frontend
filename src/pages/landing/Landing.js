@@ -41,7 +41,7 @@ const Landing = () => {
 					<Collapse isOpen={isOpen} navbar>
 						<Nav className='ml-auto' navbar>
 							<NavItem className='px-3'>
-								<NavLink to='/components/'>Home</NavLink>
+								<NavLink href='/login'>Get Started</NavLink>
 							</NavItem>
 							<NavItem className='px-3'>
 								<NavLink href='/pricing'>Pricing</NavLink>

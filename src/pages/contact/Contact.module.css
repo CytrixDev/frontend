@@ -8,6 +8,14 @@
 
 }
 
+.Alert {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 6px;
+}
+
 .Container{
     width: 100%;
 

@@ -23,13 +23,10 @@ const Prices = () => {
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className='ml-auto' navbar>
 						<NavItem className='px-3'>
-							<NavLink href='/components/'>Home</NavLink>
+							<NavLink href='/login'>Get Started</NavLink>
 						</NavItem>
 						<NavItem className='px-3'>
 							<NavLink href='/pricing'>Pricing</NavLink>
-						</NavItem>
-						<NavItem className='px-3'>
-							<NavLink href='/help'>Help</NavLink>
 						</NavItem>
 						<NavItem className='px-3'>
 							<NavLink href='/contact'>Contact</NavLink>

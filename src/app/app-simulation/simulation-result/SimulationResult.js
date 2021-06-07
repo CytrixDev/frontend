@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import sim from './sample/sim.json'
+import sim from './sample/sim3.json'
 import axios from 'axios'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
@@ -23,8 +23,8 @@ const SimulationResult = () => {
 		ctx.fillStyle = 'blue'
 		ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
 
-		simResult.sim[index].frames[
-			simResult.sim[index].frames.length - 1
+		simResult.simulation[index].frames[
+			simResult.simulation[index].frames.length - 1
 		].clusters.forEach((cluster) => {
 			cluster.nodes.forEach((node) => {
 				if (node.energy > 0) {
@@ -40,7 +40,7 @@ const SimulationResult = () => {
 
 	const roundNavigate = (forw) => {
 		if (forw) {
-			const index = (simIndex + 1) % simulationResult.sim.length
+			const index = (simIndex + 1) % simulationResult.simulation.length
 			setSimIndex(index)
 			drawPoints(simulationResult, index)
 		} else {
@@ -79,8 +79,8 @@ const SimulationResult = () => {
 			setSimulationResult(res.data)
 		} catch (e) {
 			console.log(e)
-			drawPoints(sim, 0)
-			setSimulationResult(sim)
+			drawPoints(sim[Math.floor(Math.random() * sim.length)], 0)
+			setSimulationResult(sim[Math.floor(Math.random() * sim.length)])
 		}
 	}
 
@@ -90,21 +90,21 @@ const SimulationResult = () => {
 			<div className='d-flex justify-content-between'>
 				{simulationResult ? (
 					<div>
-						<h4>Total Rounds: {simulationResult.sim.length} </h4>
+						<h4>Total Rounds: {simulationResult.simulation.length} </h4>
 						<h5>Round #{simIndex + 1} Result</h5>
 						<div>
 							Clusters:{' '}
 							{
-								simulationResult.sim[simIndex].frames[
-									simulationResult.sim[simIndex].frames.length - 1
+								simulationResult.simulation[simIndex].frames[
+									simulationResult.simulation[simIndex].frames.length - 1
 								].clusters.length
 							}
 						</div>
 						<div>
 							Active Nodes:{' '}
 							{getActiveNodes(
-								simulationResult.sim[simIndex].frames[
-									simulationResult.sim[simIndex].frames.length - 1
+								simulationResult.simulation[simIndex].frames[
+									simulationResult.simulation[simIndex].frames.length - 1
 								].clusters
 							)}
 						</div>

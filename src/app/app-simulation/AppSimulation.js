@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 const AppSimulation = () => {
 	const [points, setPoints] = useState([])
+	const [isGuest, setIsGuest] = useState(false)
 	const canvasRef = useRef(null)
 	const history = useHistory()
 
@@ -12,6 +13,11 @@ const AppSimulation = () => {
 		if (!JSON.parse(localStorage.getItem('userData'))) {
 			history.replace('/login')
 		}
+		const user = JSON.parse(localStorage.getItem('userData'))
+		if (user.firstName === 'guest') {
+			setIsGuest(true)
+		}
+
 		generatePoints()
 	}, [])
 
@@ -58,11 +64,11 @@ const AppSimulation = () => {
 					<div>
 						<FormGroup className='my-3'>
 							<Label>Base Energy</Label>
-							<Input label='Input' type='number' />
+							<Input disabled={isGuest} label='Input' type='number' />
 						</FormGroup>
 						<FormGroup className='my-3'>
 							<Label>Transmission Energy</Label>
-							<Input label='Input' type='number' />
+							<Input disabled={isGuest} label='Input' type='number' />
 						</FormGroup>
 						{/*<FormGroup className='my-3'>*/}
 						{/*	<Label>Round Limit</Label>*/}
@@ -85,7 +91,12 @@ const AppSimulation = () => {
 						>
 							Simulate
 						</Button>
-						<Button color='info' className='ml-3' onClick={generatePoints}>
+						<Button
+							disabled={isGuest}
+							color='info'
+							className='ml-3'
+							onClick={generatePoints}
+						>
 							Generate
 						</Button>
 					</div>

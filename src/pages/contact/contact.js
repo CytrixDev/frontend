@@ -6,11 +6,16 @@ const Contact = () => {
 	const [email, setEmail] = useState('')
 	const [message, setMessage] = useState('')
 	const history = useHistory()
-
+	const [timeOut, setTimeOut] = useState(false)
 	const onFormSubmit = async (e) => {
 		e.preventDefault()
 		localStorage.setItem('message', JSON.stringify({ email, message }))
-		history.push('/')
+		if (email && message) {
+			setTimeOut(true)
+			setTimeout(() => {
+				history.push('/')
+			}, 3000)
+		}
 	}
 	return (
 		<div className={classes.Login}>
@@ -30,13 +35,13 @@ const Contact = () => {
 					</svg>
 				</div>
 				<div className={classes.Form}>
-					<h1
-						style={{ cursor: 'pointe
-						className={[classes.AppName].join(' ')}
-					>
-						Contact Us!
-					</h1>
+					<h1 className={[classes.AppName].join(' ')}>Contact Us!</h1>
 					<Form onSubmit={onFormSubmit}>
+						{timeOut ? (
+							<div className={classes.Alert}>Message has been sent</div>
+						) : (
+							<div></div>
+						)}
 						<FormGroup>
 							<Label className='text-muted'>Email</Label>
 							<Input
@@ -59,9 +64,7 @@ const Contact = () => {
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Button className='w-100 mt-2' color='primary' type='submit' nClick={() => {
-							history.push('/')
-						}}>
+							<Button className='w-100 mt-2' color='success' type='submit'>
 								Submit
 							</Button>
 						</FormGroup>

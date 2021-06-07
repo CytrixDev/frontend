@@ -110,6 +110,25 @@ const SignupPage = () => {
 								Login
 							</div>
 						</div>
+
+						<div
+							onClick={() => {
+								localStorage.setItem(
+									'userData',
+									JSON.stringify({
+										id: 1,
+										email: 'guest@email.com',
+										firstName: 'guest',
+										lastName: 'guest',
+									})
+								)
+								history.push('/app/simulation')
+							}}
+							className='text-muted mt-2'
+						>
+							Use as{' '}
+							<span style={{ cursor: 'pointer', color: 'blue' }}>GUEST</span>
+						</div>
 					</Form>
 				</div>
 			</div>
