@@ -1,21 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, FormGroup, Button, Label, Input } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 import classes from './Login.module.css'
-import axios from 'axios'
+// import axios from 'axios'
+import { users } from '../../middlewares/users/userhelper'
 
 const LoginPage = () => {
 	const history = useHistory()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
+	useEffect(() => {
+		if (JSON.parse(localStorage.getItem('userData'))) {
+			history.replace('/app/simulation')
+		}
+	}, [])
+
+	const checkDB = () => {
+		console.log(users)
+		const inDB = users.find((user) => user.email === email).length > 0
+		console.log(users.find((user) => user.email === email).length > 0)
+		// const userData = JSON.parse(localStorage.getItem('userData'))
+		// const inLocal = userData.email === email && userData.password === password
+		return inDB
+	}
+
 	const onFormSubmit = async (e) => {
 		e.preventDefault()
 		try {
+			if (checkDB()) return
+
 			// Url yi almak lazim
-			const res = await axios.post('https://jsonplaceholder.typicode.com/todos')
-			console.log(res)
-			localStorage.setItem('userData', JSON.stringify(res.data))
+			// const res = await axios.post('https://jsonplaceholder.typicode.com/todos')
+			// console.log(res)
+			localStorage.setItem('userData', JSON.stringify({ email, password }))
 
 			history.push('/app')
 		} catch (e) {
@@ -66,7 +84,12 @@ const LoginPage = () => {
 
 						<div className='d-flex mt-5'>
 							<div className='text-muted'>Not a user?</div>
-							<div className='ml-3 text-primary'>Sign Up</div>
+							<div
+								className='ml-3 text-primary'
+								onClick={() => history.push('/signup')}
+							>
+								Sign Up
+							</div>
 						</div>
 					</Form>
 				</div>

@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Button, Input, Label, FormGroup } from 'reactstrap'
 import classes from './AppSimulation.module.css'
-import {useHistory} from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 const AppSimulation = () => {
 	const [points, setPoints] = useState([])
 	const canvasRef = useRef(null)
-	const history = useHistory();
+	const history = useHistory()
 
 	useEffect(() => {
+		if (!JSON.parse(localStorage.getItem('userData'))) {
+			history.replace('/login')
+		}
 		generatePoints()
 	}, [])
 
@@ -55,16 +58,16 @@ const AppSimulation = () => {
 					<div>
 						<FormGroup className='my-3'>
 							<Label>Base Energy</Label>
-							<Input label='Input' type='number'/>
+							<Input label='Input' type='number' />
 						</FormGroup>
 						<FormGroup className='my-3'>
 							<Label>Transmission Energy</Label>
-							<Input label='Input' type='number'/>
+							<Input label='Input' type='number' />
 						</FormGroup>
-						<FormGroup className='my-3'>
-							<Label>Round Limit</Label>
-							<Input label='Input' type='number'/>
-						</FormGroup>
+						{/*<FormGroup className='my-3'>*/}
+						{/*	<Label>Round Limit</Label>*/}
+						{/*	<Input label='Input' type='number' />*/}
+						{/*</FormGroup>*/}
 					</div>
 				</div>
 				<div className='w-100 d-flex flex-column align-items-center'>
@@ -76,7 +79,10 @@ const AppSimulation = () => {
 						id='canvas'
 					></canvas>
 					<div className='d-flex'>
-						<Button color='success' onClick={() => history.push('/app/simulation/result')}>
+						<Button
+							color='success'
+							onClick={() => history.push('/app/simulation/result')}
+						>
 							Simulate
 						</Button>
 						<Button color='info' className='ml-3' onClick={generatePoints}>

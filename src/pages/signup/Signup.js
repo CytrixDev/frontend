@@ -6,16 +6,24 @@ import axios from 'axios'
 
 const SignupPage = () => {
 	const history = useHistory()
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
 	const onFormSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			// Url yi almak lazim
 			const res = await axios.post('https://jsonplaceholder.typicode.com/todos')
 			console.log(res)
-			localStorage.setItem('userData', res.data)
+			const userData = {
+				id: Math.floor(Math.random() * 1000),
+				email,
+				firstName,
+				lastName,
+				password,
+			}
+			localStorage.setItem('userData', JSON.stringify(userData))
 
 			history.push('/app')
 		} catch (e) {
@@ -24,7 +32,7 @@ const SignupPage = () => {
 	}
 
 	return (
-		<div className={classes.Login}>
+		<div className={classes.Signup}>
 			<div className={classes.Container}>
 				<div className={classes.Back}>Welcome!</div>
 				<div className={classes.Form}>
@@ -38,6 +46,26 @@ const SignupPage = () => {
 								placeholder='Enter email'
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label className='text-muted'>First Name</Label>
+							<Input
+								required
+								type='text'
+								placeholder='Dwayne'
+								value={firstName}
+								onChange={(e) => setFirstName(e.target.value)}
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label className='text-muted'>Last Name</Label>
+							<Input
+								required
+								type='text'
+								placeholder='Johnson'
+								value={lastName}
+								onChange={(e) => setLastName(e.target.value)}
 							/>
 						</FormGroup>
 
@@ -65,8 +93,13 @@ const SignupPage = () => {
 						</FormGroup>
 
 						<div className='d-flex mt-5'>
-							<div className='text-muted'>Not a user?</div>
-							<div className='ml-3 text-primary'>Sign Up</div>
+							<div className='text-muted'>Already a user?</div>
+							<div
+								className='ml-3 text-primary'
+								onClick={() => history.replace('/login')}
+							>
+								Login
+							</div>
 						</div>
 					</Form>
 				</div>

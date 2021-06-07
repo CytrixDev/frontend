@@ -1,4 +1,4 @@
-.Login{
+.Signup{
     height: 100vh;
     max-width: 1280px;
     margin: auto;
@@ -34,7 +34,7 @@
 }
 
 .Form{
-    margin: 117px 45px;
+    margin: 50px 45px;
 }
 
 

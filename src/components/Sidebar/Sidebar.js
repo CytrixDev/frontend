@@ -1,8 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import classes from './Sidebar.module.css'
 
 const Sidebar = () => {
+	const history = useHistory()
 	return (
 		<div className={classes.Sidebar}>
 			<h1>Cytrix</h1>
@@ -19,15 +20,18 @@ const Sidebar = () => {
 					to='/app/profile'
 					activeClassName={classes.selected}
 				>
-					<i className='fas fa-user'></i>Profile
+					<i className='fas fa-user'></i>Account
 				</NavLink>
-				<NavLink
+				<div
 					className={classes.Link}
-					to='/login'
+					onClick={() => {
+						localStorage.clear()
+						history.replace('/login')
+					}}
 					activeClassName={classes.selected}
 				>
 					<i className='fas fa-sign-out-alt'></i>Logout
-				</NavLink>
+				</div>
 			</div>
 		</div>
 	)
