@@ -36,7 +36,15 @@ const SignupPage = () => {
 			<div className={classes.Container}>
 				<div className={classes.Back}>Welcome!</div>
 				<div className={classes.Form}>
-					<h1 className={[classes.AppName].join(' ')}>Cytrix</h1>
+					<h1
+						style={{ cursor: 'pointer' }}
+						onClick={() => {
+							history.push('/')
+						}}
+						className={[classes.AppName].join(' ')}
+					>
+						Cytrix
+					</h1>
 					<Form onSubmit={onFormSubmit}>
 						<FormGroup>
 							<Label className='text-muted'>Email address</Label>

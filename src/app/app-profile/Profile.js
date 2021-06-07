@@ -11,10 +11,10 @@ export const Profile = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [editData, setEditData] = useState(false)
 
-	const [editName, setEditName] = useState(userData.firstName)
+	const [editName, setEditName] = useState(null)
 	//
 	//
-	const [editLastName, setEditLastName] = useState(userData.lastName)
+	const [editLastName, setEditLastName] = useState(null)
 
 	useEffect(() => {
 		if (!JSON.parse(localStorage.getItem('userData'))) {
@@ -26,6 +26,8 @@ export const Profile = () => {
 		)
 		if (!user) user = JSON.parse(localStorage.getItem('userData'))
 		setUserData(user)
+		setEditName(user.firstName)
+		setEditLastName(user.lastName)
 	}, [])
 
 	return (
@@ -49,6 +51,7 @@ export const Profile = () => {
 								<Input
 									type='text'
 									placeholder={userData.firstName}
+									value={editName}
 									onChange={(event) => {
 										setEditName(event.target.value)
 									}}
@@ -76,6 +79,7 @@ export const Profile = () => {
 								<Input
 									type='text'
 									placeholder={userData.lastName}
+									value={editLastName}
 									onChange={(event) => {
 										setEditLastName(event.target.value)
 									}}

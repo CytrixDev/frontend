@@ -17,9 +17,10 @@
         align-self: center;
         width: 500px;
         height: 250px;
+        display: none;
     }
     .landingTopContent {
-        width: 40%;
+        width: 80%;
         align-self: center;
     }
     .landingTopContent .contentTitle{
