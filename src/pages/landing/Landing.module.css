@@ -1,33 +1,65 @@
-@media only screen and (max-width: 760px) {
+@media (max-width: 760px) {
     img {
-        visibility: hidden;
+        display: none;
+    }
+
+    .landingTop {
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .landingTopArea {
+        display: flex;
+        justify-content: space-evenly;
+        flex-grow: 1;
+    }
+    .landingTopArea .landingTopImage {
+        align-self: center;
+        width: 500px;
+        height: 250px;
+    }
+    .landingTopContent {
+        width: 40%;
+        align-self: center;
+    }
+    .landingTopContent .contentTitle{
+        font-size: 4rem;
+    }
+    .landingTopContent .buttons button{
+        width: 100px;
     }
 }
 
-.landingTop {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-.landingTopArea {
-    display: flex;
-    justify-content: space-evenly;
-    flex-grow: 1;
-}
-.landingTopArea .landingTopImage {
-    align-self: center;
-    width: 500px;
-    height: 250px;
-}
-.landingTopContent {
-    width: 40%;
-    align-self: center;
-}
-.landingTopContent .contentTitle{
-    font-size: 4rem;
-}
-.landingTopContent .buttons button{
-    width: 100px;
+@media (min-width: 760px) {
+    img {
+        display: block;
+    }
+
+    .landingTop {
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .landingTopArea {
+        display: flex;
+        justify-content: space-evenly;
+        flex-grow: 1;
+    }
+    .landingTopArea .landingTopImage {
+        align-self: center;
+        width: 500px;
+        height: 250px;
+    }
+    .landingTopContent {
+        width: 40%;
+        align-self: center;
+    }
+    .landingTopContent .contentTitle{
+        font-size: 4rem;
+    }
+    .landingTopContent .buttons button{
+        width: 100px;
+    }
 }
 /*.features {*/
 /*    text-align: center;*/

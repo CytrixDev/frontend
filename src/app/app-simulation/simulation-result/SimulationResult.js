@@ -108,6 +108,22 @@ const SimulationResult = () => {
 								].clusters
 							)}
 						</div>
+						<div>
+							Active Nodes{' '}
+							<span
+								style={{ color: 'blue', marginLeft: '5px', marginTop: '7px' }}
+							>
+								*
+							</span>
+						</div>
+						<div>
+							Dead Nodes{' '}
+							<span
+								style={{ color: 'red', marginLeft: '5px', marginTop: '7px' }}
+							>
+								*
+							</span>
+						</div>
 					</div>
 				) : (
 					<div>Loading...</div>

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	Collapse,
 	Navbar,
@@ -13,12 +13,11 @@ import styles from './Landing.module.css'
 import 'remixicon/fonts/remixicon.css'
 import { useHistory } from 'react-router-dom'
 
-
 const Landing = () => {
 	const [isOpen, setIsOpen] = useState(false),
 		toggle = () => setIsOpen(!isOpen)
 
-	const history = useHistory();
+	const history = useHistory()
 
 	const onLoginClicked = () => {
 		history.push('/login')
@@ -27,10 +26,16 @@ const Landing = () => {
 		history.push('/signup')
 	}
 
+	useEffect(() => {
+		if (JSON.parse(localStorage.getItem('userData'))) {
+			history.replace('/app/simulation')
+		}
+	}, [])
+
 	return (
 		<div>
 			<div className={styles.landingTop}>
-				<Navbar color='primary' dark expand='lg' className='py-3 px-5'>
+				<Navbar color='dark' dark expand='lg' className='py-3 px-5'>
 					<NavbarBrand href='/'>Cytrix</NavbarBrand>
 					<NavbarToggler onClick={toggle} />
 					<Collapse isOpen={isOpen} navbar>
@@ -60,7 +65,11 @@ const Landing = () => {
 							the design and application process of different algorithms
 						</p>
 						<div className={styles.buttons + ' py-2'}>
-							<Button onClick={onSignupClicked} color='warning' className='mr-2'>
+							<Button
+								onClick={onSignupClicked}
+								color='success'
+								className='mr-2'
+							>
 								Sign Up
 							</Button>
 							<Button onClick={onLoginClicked} color='primary' className='mx-2'>

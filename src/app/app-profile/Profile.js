@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Profile.module.css'
-import { Row, Col, FormGroup, Label, Button } from 'reactstrap'
+import { Row, Col, FormGroup, Label, Button, Input } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 import { users } from '../../middlewares/users/userhelper'
 
@@ -10,6 +10,11 @@ export const Profile = () => {
 
 	// eslint-disable-next-line no-unused-vars
 	const [editData, setEditData] = useState(false)
+
+	const [editName, setEditName] = useState(userData.firstName)
+	//
+	//
+	const [editLastName, setEditLastName] = useState(userData.lastName)
 
 	useEffect(() => {
 		if (!JSON.parse(localStorage.getItem('userData'))) {
@@ -29,17 +34,25 @@ export const Profile = () => {
 			<div>
 				<Row>
 					<Col className='d-flex justify-content-center align-items-center mb-5'>
-						<img className={styles.pP} src='/person.jpg' />
+						<img className={styles.pP} src='https://www.gravatar.com/avatar' />
 					</Col>
 				</Row>
 				<Row className='d-flex justify-content-center align-items-center'>
 					<Col sm='6'>
 						<FormGroup className='d-flex flex-column'>
 							<Label for='name'>First Name</Label>
-							{userData ? (
+							{userData && !editData ? (
 								<Label style={{ fontWeight: 'bold' }}>
 									{userData.firstName}
 								</Label>
+							) : userData && editData ? (
+								<Input
+									type='text'
+									placeholder={userData.firstName}
+									onChange={(event) => {
+										setEditName(event.target.value)
+									}}
+								/>
 							) : (
 								<div>Loading</div>
 							)}
@@ -55,10 +68,18 @@ export const Profile = () => {
 					<Col sm='6'>
 						<FormGroup>
 							<Label for='surname'>Last Name</Label>
-							{userData ? (
+							{userData && !editData ? (
 								<Label style={{ fontWeight: 'bold' }}>
 									{userData.lastName}
 								</Label>
+							) : userData && editData ? (
+								<Input
+									type='text'
+									placeholder={userData.lastName}
+									onChange={(event) => {
+										setEditLastName(event.target.value)
+									}}
+								/>
 							) : (
 								<div>Loading</div>
 							)}
@@ -76,8 +97,10 @@ export const Profile = () => {
 					<Col sm='6'>
 						<FormGroup className='d-flex flex-column'>
 							<Label for='name'>Email</Label>
-							{userData ? (
+							{userData && !editData ? (
 								<Label style={{ fontWeight: 'bold' }}>{userData.email}</Label>
+							) : userData && editData ? (
+								<Input type='email' placeholder={userData.email} readOnly />
 							) : (
 								<div>Loading</div>
 							)}
@@ -113,31 +136,59 @@ export const Profile = () => {
 				<Row className='d-flex justify-content-center align-items-center mt-3'>
 					<Col sm='6'>
 						<FormGroup className='d-flex flex-column'>
-							<Button
-								onClick={() => {
-									setEditData(editData)
-									console.log(editData)
-								}}
-								className='w-100'
-								color='primary'
-							>
-								Edit
-							</Button>
+							{editData ? (
+								<Button
+									onClick={() => {
+										setEditData(!editData)
+										console.log(editName)
+										console.log(editLastName)
+									}}
+									className='w-100'
+									color='success'
+								>
+									Save
+								</Button>
+							) : (
+								<Button
+									onClick={() => {
+										setEditData(!editData)
+										console.log(editData)
+									}}
+									className='w-100'
+									color='primary'
+								>
+									Edit
+								</Button>
+							)}
 						</FormGroup>
 					</Col>
 					<Col sm='6'>
 						<FormGroup className='d-flex flex-column'>
-							<Button
-								onClick={() => {
-									localStorage.clear()
-									history.push('/login')
-								}}
-								className='w-100'
-								color='danger'
-								outline
-							>
-								Delete
-							</Button>
+							{editData ? (
+								<Button
+									onClick={() => {
+										setEditData(!editData)
+										console.log(editData)
+									}}
+									className='w-100'
+									color='danger'
+									outline
+								>
+									Cancel
+								</Button>
+							) : (
+								<Button
+									onClick={() => {
+										localStorage.clear()
+										history.push('/login')
+									}}
+									className='w-100'
+									color='danger'
+									outline
+								>
+									Delete
+								</Button>
+							)}
 						</FormGroup>
 					</Col>
 				</Row>

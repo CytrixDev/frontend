@@ -85,16 +85,17 @@ const SignupPage = () => {
 							</Button>
 						</FormGroup>
 
-						<FormGroup className='d-flex pl-4 justify-content-between mt-4'>
-							<Label check className='text-muted'>
-								<Input type='checkbox' /> Remember me
-							</Label>
-							<div className='text-muted'>Forgot Password</div>
-						</FormGroup>
+						{/*<FormGroup className='d-flex pl-4 justify-content-between mt-4'>*/}
+						{/*	<Label check className='text-muted'>*/}
+						{/*		<Input type='checkbox' /> Remember me*/}
+						{/*	</Label>*/}
+						{/*	<div className='text-muted'>Forgot Password</div>*/}
+						{/*</FormGroup>*/}
 
 						<div className='d-flex mt-5'>
 							<div className='text-muted'>Already a user?</div>
 							<div
+								style={{ cursor: 'pointer' }}
 								className='ml-3 text-primary'
 								onClick={() => history.replace('/login')}
 							>

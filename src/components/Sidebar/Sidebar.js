@@ -28,6 +28,7 @@ const Sidebar = () => {
 						localStorage.clear()
 						history.replace('/login')
 					}}
+					style={{ cursor: 'pointer' }}
 					activeClassName={classes.selected}
 				>
 					<i className='fas fa-sign-out-alt'></i>Logout
